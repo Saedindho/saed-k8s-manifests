@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-tracker
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: expense-tracker
+        image: ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/student-expense-tracker:v1
+        ports:
+        - containerPort: 5000
