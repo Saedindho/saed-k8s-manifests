@@ -1,13 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+
 metadata:
-  name: expense-tracker
-  namespace: default
+  name: expense-tracker-deployment
 spec:
+  selector:
+    matchLabels:
+      app: expense-tracker  # This MUST match the template label below
   template:
-    spec:
-      containers:
-      - name: expense-tracker
-        image: ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/student-expense-tracker:v1
-        ports:
-        - containerPort: 5000
+    metadata:
+      labels:
+        app: expense-tracker # And this MUST match the Service selector
