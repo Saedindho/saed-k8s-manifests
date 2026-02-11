@@ -1,11 +1,32 @@
-
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: expense-tracker-deployment
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: expense-tracker  # This MUST match the template label below
+      app: expense-tracker
   template:
     metadata:
       labels:
-        app: expense-tracker # And this MUST match the Service selector
+        app: expense-tracker
+    spec:
+      containers:
+      - name: expense-tracker
+        image: YOUR_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/student-expense-tracker:v1
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: expense-tracker-service
+spec:
+  selector:
+    app: expense-tracker
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
