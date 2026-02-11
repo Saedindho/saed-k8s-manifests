@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: expense-tracker
-        ports:
         image: 381443105140.dkr.ecr.eu-west-2.amazonaws.com/student-expense-tracker:1d7b548ab2dbe77bbb33c4a058961ec24ba54206
+        ports:
         - containerPort: 5000
 ---
 apiVersion: v1
